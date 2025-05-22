@@ -56,14 +56,14 @@ function insert($data)
 }
 
 
-function delete($id, $foto)
+function delete($id, $gbr)
 {
     global $koneksi;
 
-    $sqlData = "DELETE FROM tbl_barang WHERE userid = $id";
-    mysqli_query($koneksi, $sqlData);
-    if ($foto != '6061aaa779b88.png') {
-        unlink('../assets/image/' . $foto);
+    $sqlDel = "DELETE FROM tbl_barang WHERE id_barang = '$id'";
+    mysqli_query($koneksi, $sqlDel);
+    if ($gbr != 'default.jpg') {
+        unlink('../assets/image/' . $gbr);
     }
     return mysqli_affected_rows($koneksi);
 }
@@ -126,7 +126,7 @@ function update($data)
     if ($gambar != null) {
         $url = "data-user.php";
         $imgUser = uploadimg($url);
-        if ($fotoLama != '6061aaa779b88.png') {
+        if ($fotoLama != 'default.png') {
             @unlink('../assets/image/' . $fotoLama);
         }
     } else {
